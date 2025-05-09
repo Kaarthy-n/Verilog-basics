@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile and Run Verilog",
+      "type": "shell",
+      "command": "iverilog",
+      "args": [
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.vvp",
+        "${file}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Compile Verilog file using Icarus Verilog"
+    },
+    {
+      "label": "Run Verilog Simulation",
+      "type": "shell",
+      "command": "vvp",
+      "args": [
+        "${fileDirname}/${fileBasenameNoExtension}.vvp"
+      ],
+      "group": "test",
+      "dependsOn": "Compile and Run Verilog",
+      "problemMatcher": [],
+      "detail": "Run simulation using VVP"
+    },
+    {
+    "label": "Open GTKWave",
+    "type": "shell",
+    "command": "gtkwave",
+    "args": [
+        "${fileDirname}/dump.vcd"
+    ],
+    "group": "test",
+    "problemMatcher": [],
+    "detail": "View waveform in GTKWave"
+    }
+  ]
+}
